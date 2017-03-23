@@ -1,6 +1,6 @@
 #data reading
-math.tra = read.csv2("data/pv1math-tra.csv", sep=",", dec=".", encoding='utf-8')
-math.tst = read.csv2("data/pv1math-tst.csv", sep=",", dec=".", encoding='utf-8')
+math.tra = read.csv2("data/pv1math-tra.csv", sep=";", dec=",", quote="\"", encoding='utf-8')
+math.tst = read.csv2("data/pv1math-tst.csv", sep=";", dec=",", quote="\"", encoding='utf-8')
 
 #general information
 dim(math.tra);  dim(math.tst)
@@ -33,3 +33,7 @@ ClassPercentages = function(feature){
 
 ClassPercentages(math.tra$PV1MATH)    #percentage labels from class
 
+
+#save data
+write.csv2(math.tra, "./data/pv1math-tra.csv", row.names=F)
+write.csv2(math.tst, "./data/pv1math-tst.csv", row.names=F)
