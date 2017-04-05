@@ -133,7 +133,43 @@ prediction = predict(svmModel, math.tst, probability=T)
 prediction = attr(prediction, "probabilities")[,2]
 #_____________________________________________ 0.82293
 
+################ SVM v2.3 #################
+#Model with data transformation Centered and Scaled, remove ST04Q01 feature
+#data reading
+math.tra = read.csv2("data/pv1math-tra-ftS.ST04Q01.csv", sep=";", dec=",", quote="\"", encoding='utf-8')
+math.tst = read.csv2("data/pv1math-tst-ftS.ST04Q01.csv", sep=";", dec=",", quote="\"", encoding='utf-8')
+
+require(e1071)
+svmModel = e1071::svm(as.factor(PV1MATH) ~ ., data=math.tra, probability=T)
+prediction = predict(svmModel, math.tst, probability=T)
+prediction = attr(prediction, "probabilities")[,2]
+#_____________________________________________ 0.82226
+
+################ SVM v2.4 #################
+#Model with data transformation Centered and Scaled, remove FAMSTRUC feature
+#data reading
+math.tra = read.csv2("data/pv1math-tra-ftS.FAMSTRUC.csv", sep=";", dec=",", quote="\"", encoding='utf-8')
+math.tst = read.csv2("data/pv1math-tst-ftS.FAMSTRUC.csv", sep=";", dec=",", quote="\"", encoding='utf-8')
+
+require(e1071)
+svmModel = e1071::svm(as.factor(PV1MATH) ~ ., data=math.tra, probability=T)
+prediction = predict(svmModel, math.tst, probability=T)
+prediction = attr(prediction, "probabilities")[,2]
+#_____________________________________________ 0.81953
+
+################ SVM v2.5 #################
+#Model with data transformation Centered and Scaled, remove FAMSTRUC feature
+#data reading
+math.tra = read.csv2("data/pv1math-tra-ftS.ATTLNACT.csv", sep=";", dec=",", quote="\"", encoding='utf-8')
+math.tst = read.csv2("data/pv1math-tst-ftS.ATTLNACT.csv", sep=";", dec=",", quote="\"", encoding='utf-8')
+
+require(e1071)
+svmModel = e1071::svm(as.factor(PV1MATH) ~ ., data=math.tra, probability=T)
+prediction = predict(svmModel, math.tst, probability=T)
+prediction = attr(prediction, "probabilities")[,2]
+#_____________________________________________ 0.82246
+
 
 ######## Submission code ##########
 submission = data.frame(ID=c(1:length(prediction)), Prediction=prediction, row.names=NULL)
-write.table(submission, "./submission/m5-svm2.2.csv", row.names=FALSE, quote=FALSE, sep=",")
+write.table(submission, "./submission/m7-svm2.5.csv", row.names=FALSE, quote=FALSE, sep=",")
