@@ -97,7 +97,43 @@ svmModel = e1071::svm(PV1MATH ~ ., data=math.tra, type="eps")
 prediction = predict(svmModel, math.tst, type="probs")
 #_____________________________________________ 0.80790
 
+################ SVM v1.1 #################
+#Model without preprocessing
+#data reading
+math.tra = read.csv2("data/pv1math-tra.csv", sep=";", dec=",", quote="\"", encoding='utf-8')
+math.tst = read.csv2("data/pv1math-tst.csv", sep=";", dec=",", quote="\"", encoding='utf-8')
+
+require(e1071)
+svmModel = e1071::svm(as.factor(PV1MATH) ~ ., data=math.tra, probability=T)
+prediction = predict(svmModel, math.tst, probability=T)
+prediction = attr(prediction, "probabilities")[,2]
+#_____________________________________________ 0.82293
+
+################ SVM v2.1 #################
+#Model with data transformation Centered
+#data reading
+math.tra = read.csv2("data/pv1math-tra-centered.csv", sep=";", dec=",", quote="\"", encoding='utf-8')
+math.tst = read.csv2("data/pv1math-tst-centered.csv", sep=";", dec=",", quote="\"", encoding='utf-8')
+
+require(e1071)
+svmModel = e1071::svm(as.factor(PV1MATH) ~ ., data=math.tra, probability=T)
+prediction = predict(svmModel, math.tst, probability=T)
+prediction = attr(prediction, "probabilities")[,2]
+#_____________________________________________ 0.82293
+
+################ SVM v2.2 #################
+#Model with data transformation Centered and Scaled
+#data reading
+math.tra = read.csv2("data/pv1math-tra-centerScaled.csv", sep=";", dec=",", quote="\"", encoding='utf-8')
+math.tst = read.csv2("data/pv1math-tst-centerScaled.csv", sep=";", dec=",", quote="\"", encoding='utf-8')
+
+require(e1071)
+svmModel = e1071::svm(as.factor(PV1MATH) ~ ., data=math.tra, probability=T)
+prediction = predict(svmModel, math.tst, probability=T)
+prediction = attr(prediction, "probabilities")[,2]
+#_____________________________________________ 0.82293
+
 
 ######## Submission code ##########
 submission = data.frame(ID=c(1:length(prediction)), Prediction=prediction, row.names=NULL)
-write.table(submission, "./submission/m3.2-svm-raw.csv", row.names=FALSE, quote=FALSE, sep=",")
+write.table(submission, "./submission/m5-svm2.2.csv", row.names=FALSE, quote=FALSE, sep=",")
