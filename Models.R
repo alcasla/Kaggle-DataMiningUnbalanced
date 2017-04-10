@@ -158,7 +158,7 @@ prediction = attr(prediction, "probabilities")[,2]
 #_____________________________________________ 0.81953
 
 ################ SVM v2.5 #################
-#Model with data transformation Centered and Scaled, remove FAMSTRUC feature
+#Model with data transformation Centered and Scaled, remove ATTLNACT feature
 #data reading
 math.tra = read.csv2("data/pv1math-tra-ftS.ATTLNACT.csv", sep=";", dec=",", quote="\"", encoding='utf-8')
 math.tst = read.csv2("data/pv1math-tst-ftS.ATTLNACT.csv", sep=";", dec=",", quote="\"", encoding='utf-8')
@@ -169,7 +169,124 @@ prediction = predict(svmModel, math.tst, probability=T)
 prediction = attr(prediction, "probabilities")[,2]
 #_____________________________________________ 0.82246
 
+################ SVM v2.6 #################
+#Model with data transformation Centered and Scaled, remove ST04Q01 and ATSCHL features
+#data reading
+math.tra = read.csv2("data/pv1math-tra-ftS.ST04Q01.ATSCHL.csv", sep=";", dec=",", quote="\"", encoding='utf-8')
+math.tst = read.csv2("data/pv1math-tst-ftS.ST04Q01.ATSCHL.csv", sep=";", dec=",", quote="\"", encoding='utf-8')
+
+require(e1071)
+svmModel = e1071::svm(as.factor(PV1MATH) ~ ., data=math.tra, probability=T)
+prediction = predict(svmModel, math.tst, probability=T)
+prediction = attr(prediction, "probabilities")[,2]
+#_____________________________________________ 0.82348
+
+################ SVM v2.7 #################
+#Model with data transformation Centered and Scaled, remove ST04Q01, fisced, BELONG, ATSCHL features
+#data reading
+math.tra = read.csv2("data/pv1math-tra-ftS.ST04Q01.misced.BELONG.ATSCHL.csv", sep=";", dec=",", quote="\"", encoding='utf-8')
+math.tst = read.csv2("data/pv1math-tst-ftS.ST04Q01.misced.BELONG.ATSCHL.csv", sep=";", dec=",", quote="\"", encoding='utf-8')
+
+require(e1071)
+svmModel = e1071::svm(as.factor(PV1MATH) ~ ., data=math.tra, probability=T)
+prediction = predict(svmModel, math.tst, probability=T)
+prediction = attr(prediction, "probabilities")[,2]
+#_____________________________________________ 0.81541
+
+################ SVM v2.8 #################
+#Model with data transformation Centered and Scaled, remove ST04Q01, ATSCHL, and MATWKETH features
+#data reading
+math.tra = read.csv2("data/pv1math-tra-ftS.ST04Q01.ATSCHL.MATWKETH.csv", sep=";", dec=",", quote="\"", encoding='utf-8')
+math.tst = read.csv2("data/pv1math-tst-ftS.ST04Q01.ATSCHL.MATWKETH.csv", sep=";", dec=",", quote="\"", encoding='utf-8')
+
+require(e1071)
+svmModel = e1071::svm(as.factor(PV1MATH) ~ ., data=math.tra, probability=T)
+prediction = predict(svmModel, math.tst, probability=T)
+prediction = attr(prediction, "probabilities")[,2]
+#_____________________________________________ 0.42853
+
+################ SVM v2.9 #################
+#Model with data transformation Centered and Scaled, remove ST04Q01, ATSCHL, and MATINTFC features
+#data reading
+math.tra = read.csv2("data/pv1math-tra-ftS.ST04Q01.ATSCHL.MATINTFC.csv", sep=";", dec=",", quote="\"", encoding='utf-8')
+math.tst = read.csv2("data/pv1math-tst-ftS.ST04Q01.ATSCHL.MATINTFC.csv", sep=";", dec=",", quote="\"", encoding='utf-8')
+
+require(e1071)
+svmModel = e1071::svm(as.factor(PV1MATH) ~ ., data=math.tra, probability=T)
+prediction = predict(svmModel, math.tst, probability=T)
+prediction = attr(prediction, "probabilities")[,2]
+#_____________________________________________ 0.82281
+
+################ SVM v2.10 #################
+#Model with data transformation Centered and Scaled, remove ST04Q01, ESCS, and ATSCHL features
+#data reading
+math.tra = read.csv2("data/pv1math-tra-ftS.ST04Q01.ESCS.ATSCHL.csv", sep=";", dec=",", quote="\"", encoding='utf-8')
+math.tst = read.csv2("data/pv1math-tst-ftS.ST04Q01.ESCS.ATSCHL.csv", sep=";", dec=",", quote="\"", encoding='utf-8')
+
+require(e1071)
+svmModel = e1071::svm(as.factor(PV1MATH) ~ ., data=math.tra, probability=T)
+prediction = predict(svmModel, math.tst, probability=T)
+prediction = attr(prediction, "probabilities")[,2]
+#_____________________________________________ 0.82042
+
+################ SVM v2.11 #################
+#Model with data transformation Centered and Scaled, remove features with exhaustive.serach 1
+#data reading
+math.tra = read.csv2("data/pv1math-tra-ftS.exaus1.csv", sep=";", dec=",", quote="\"", encoding='utf-8')
+math.tst = read.csv2("data/pv1math-tst-ftS.exaus1.csv", sep=";", dec=",", quote="\"", encoding='utf-8')
+
+require(e1071)
+svmModel = e1071::svm(as.factor(PV1MATH) ~ ., data=math.tra, probability=T)
+prediction = predict(svmModel, math.tst, probability=T)
+prediction = attr(prediction, "probabilities")[,2]
+#_____________________________________________ 0.82268
+
+################ SVM v2.12 #################
+#Model with data transformation Centered and Scaled, remove features with exhaustive.serach 2
+#data reading
+math.tra = read.csv2("data/pv1math-tra-ftS.exaus2.csv", sep=";", dec=",", quote="\"", encoding='utf-8')
+math.tst = read.csv2("data/pv1math-tst-ftS.exaus2.csv", sep=";", dec=",", quote="\"", encoding='utf-8')
+
+require(e1071)
+svmModel = e1071::svm(as.factor(PV1MATH) ~ ., data=math.tra, probability=T)
+prediction = predict(svmModel, math.tst, probability=T)
+prediction = attr(prediction, "probabilities")[,2]
+#_____________________________________________ 0.81633
+
+################ SVM v3.0 - CARET #################
+#Model with data transformation Centered and Scaled, remove features with exhaustive.serach 1
+#data reading
+#math.tra = read.csv2("data/pv1math-tra-ftS.exaus1.csv", sep=";", dec=",", quote="\"", encoding='utf-8')
+#math.tst = read.csv2("data/pv1math-tst-ftS.exaus1.csv", sep=";", dec=",", quote="\"", encoding='utf-8')
+#math.tra$PV1MATH = factor(mathtra$PV1MATH)
+
+#mathtra = read.csv2("data/pv1math-tra-ftS.ST04Q01.ATSCHL.csv", sep=";", dec=",", quote="\"", encoding='utf-8')
+#mathtst = read.csv2("data/pv1math-tst-ftS.ST04Q01.ATSCHL.csv", sep=";", dec=",", quote="\"", encoding='utf-8')
+#math.tra$PV1MATH = factor(mathtra$PV1MATH)
+
+math.tra = read.csv2("data/pv1math-tra.csv", sep=";", dec=",", quote="\"", encoding='utf-8')
+math.tst = read.csv2("data/pv1math-tst.csv", sep=";", dec=",", quote="\"", encoding='utf-8')
+math.tra$PV1MATH = factor(mathtra$PV1MATH)
+
+require(caret)
+require(kernlab)
+Control<- trainControl(method="repeatedcv",   
+                       repeats=3,      
+                       summaryFunction=twoClassSummary, 
+                       classProbs=TRUE)
+train <- caret::train(x=subset(math.tra,select=-c(PV1MATH)),
+                      y= make.names(math.tra$PV1MATH),
+                      method = "svmRadial", 
+                      tuneLength = 9,    
+                      #preProc = c("center","scale"),  
+                      metric="ROC",
+                      trControl=Control)
+
+
+prediction <- predict.train(train,math.tst,type = "prob")[,2]
+#_____________________________________________ 0.
+
 
 ######## Submission code ##########
 submission = data.frame(ID=c(1:length(prediction)), Prediction=prediction, row.names=NULL)
-write.table(submission, "./submission/m7-svm2.5.csv", row.names=FALSE, quote=FALSE, sep=",")
+write.table(submission, "./submission/m16-svmCaret.raw.csv", row.names=FALSE, quote=FALSE, sep=",")

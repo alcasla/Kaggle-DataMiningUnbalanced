@@ -22,8 +22,25 @@ numNA = function(dataset){
 }
 #_______________________________
 
-#Boxplot
+
+#Boxplot  TERMINARRRRRRR********************///////////////***************************------------------
 boxplot(math.tra, main="Dataset math boxplot", las=2, cex.axis=0.8)
+boxplot(math.tra, main="Dataset math boxplot", las=2, cex.axis=0.8, outline=F)
+
+#Add mark to test and combine all data
+#separar instancias del train cambiarle los nombres a todas las variables y si eso ordenarlas
+math.tra.0 = math.tra[which(math.tra$PV1MATH==0),]
+math.tra.1 = math.tra[which(math.tra$PV1MATH==1),]
+
+test = cbind(math.tst, PV1MATH=rep(2, dim(math.tst)[1]))
+fullData = rbind(math.tra, test)
+
+require(ggplot2)
+require(reshape)
+fullDataPlane <- melt(fullData, id.var = "PV1MATH")
+ggplot(data=fullDataPlane, aes(x=variable, y=value)) +
+  geom_boxplot(aes(fill=PV1MATH))
+#_______________________________
 
 
 #Study class PV1MATH
